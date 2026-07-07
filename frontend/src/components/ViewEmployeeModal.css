@@ -1,0 +1,214 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 40px;
+
+  z-index: 1000;
+}
+
+.view-modal {
+  background: white;
+  width: 650px;
+  padding: 20px;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  font-size: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* .profile-section {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+} */
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.role-boxes {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.role-box {
+  padding: 5px 8px;
+  background: #b5d7ea;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #2689e6; /* ✅ correct way */
+  color: #1677ff;
+}
+.department-box {
+  padding: 5px 8px;
+  background: #fabcf6;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #9533c2; /* ✅ correct way */
+  color: #540e6b;
+}
+
+.employeeTypee-box {
+  padding: 5px 8px;
+  background: #b5ead8;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #2e8669; /* ✅ correct way */
+  color: #105b4b;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;  /* 🔥 RIGHT ALIGN */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.edit-btn {
+  padding: 8px 12px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.delete-btn {
+  padding: 8px 12px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+section {
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+label {
+  font-size: 14px;
+  color: gray;
+  justify-content: left;
+}
+
+section h4 {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1677ff;
+  border-bottom: 2px solid #d0e3f5;
+  padding-bottom: 8px; 
+}
+
+section p {
+    font-size: 14px;
+    color: black;
+    justify-content:"first baseline";
+}
+
+.grid-row > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 🔥 key fix */
+}
+
+.grid-row label {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 4px;
+}
+
+.grid-row p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 60px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.field label {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 4px;
+}
+
+.field p {
+  margin: 0;
+}
+
+.profile {
+    border: 1px solid #f8f9fa;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 0px 20px 0px 20px;
+}
+
+
+.profile-header {
+  display: flex;
+  align-items: center; /* vertical alignment */
+  gap: 12px;  
+}
+
+
+
+.name {
+  color: black;
+  margin: 0;        /* 🔥 remove default spacing */
+  padding-top: 20px;
+}
+
+.email {
+  margin: 4px 0 0 0;  /* small controlled gap */
+  color: gray;
+  font-size: 14px;
+  padding-bottom: 15px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -1,0 +1,278 @@
+/* Overlay */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 40px;
+
+  z-index: 1000;
+}
+
+/* Modal */
+
+.modal-content {
+  background: #ffffff;
+
+  width: 720px;
+  max-width: calc(100vw - 32px);
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  border-radius: 8px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.08),
+    0 3px 6px rgba(0, 0, 0, 0.12),
+    0 9px 28px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+
+  font-size: 32px;
+  font-weight: 600;
+
+  color: #222;
+}
+
+/* Close button */
+
+.close-btn {
+  border: none;
+  background: transparent;
+
+  font-size: 28px;
+  color: #999;
+
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Toolbar */
+
+.modal-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 0;
+
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+
+  margin-bottom: 30px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.toolbar-left h3 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Avatar */
+
+.avatar {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Buttons */
+
+.toolbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancel-btn {
+  padding: 10px 24px;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+
+  background: white;
+
+  cursor: pointer;
+  color: #000000;
+}
+
+.cancel-btn:hover {
+  background: #dcdbdb;
+}
+
+.save-btn {
+  padding: 10px 24px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #1677ff;
+  color: white;
+
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #0958d9;
+}
+
+/* Section Titles */
+
+.section-title {
+  color: #2563eb;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  text-align: left;
+
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 2px solid #e5eefc;
+}
+
+/* Grid Layout */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px 32px;
+
+  margin-bottom: 24px;
+}
+
+/* Form Group */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #000000;
+}
+
+/* Inputs */
+
+.form-group input,
+.form-group select {
+  width: 100%;
+
+  padding: 12px;
+
+  background: #ffffff;
+  color: #000000;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  box-sizing: border-box;
+}
+
+/* Readonly Inputs */
+
+input:disabled {
+  background: #ffffff;
+  color: #000000;
+
+  border: 1px solid #d9d9d9;
+
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Compensation */
+
+.salary-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.salary-field {
+  width: 300px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: left;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-toolbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+  }
+}
+
+.h3 {
+    color: #494848;
+}

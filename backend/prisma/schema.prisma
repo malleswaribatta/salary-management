@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Employee {
+  id             Int          @id @default(autoincrement())
+  name           String
+  email          String       @unique
+  joiningDate    DateTime
+  gender         String
+  departmentId   Int
+  roleId         Int
+  countryId      Int
+  employeeTypeId Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  salary         Decimal      @db.Decimal
+  country        Country      @relation(fields: [countryId], references: [id])
+  department     Department   @relation(fields: [departmentId], references: [id])
+  employeeType   EmployeeType @relation(fields: [employeeTypeId], references: [id])
+  role           Role         @relation(fields: [roleId], references: [id])
+}
+
+model Department {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[]
+}
+
+model Role {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[]
+}
+
+model Country {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[]
+}
+
+model EmployeeType {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  employees Employee[]
+}

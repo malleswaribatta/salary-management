@@ -1,0 +1,41 @@
+.main-page {
+  padding: 20px;
+  background: white;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-265%);
+}
+
+.tabs span {
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background: #e6f0ff;
+  color: #1677ff;
+  border: #1677ff solid 0px;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 11px 10px;
+}

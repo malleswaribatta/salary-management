@@ -2,7 +2,8 @@
   "tasks": {
     "dev": "deno run -A --env=.env --watch main.ts",
     "start": "deno run -A main.ts",
-    "build": "deno compile -A --env=.env -o app main.ts",
+    "predeploy": "deno run -A --env=.env npm:prisma generate",
+    "build": "deno run -A npm:prisma generate && deno compile -A --env=.env -o app main.ts",
     "db:generate": "deno run -A --env=.env npm:prisma generate",
     "db:push": "deno run -A --env=.env npm:prisma db push",
     "db:pull": "deno run -A --env=.env npm:prisma db pull",

@@ -1,7 +1,6 @@
 import {
   Button,
   ButtonGroup,
-  Chip,
   Stack,
   TableBody,
   TableCell,
@@ -39,7 +38,6 @@ export function EmployeeList({
   setSelectedEmployee,
   handleDeleteClick,
   setIsAddModalOpen,
-  setSearchText,
   setSearchInput,
   onSearch,
 }: Props) {

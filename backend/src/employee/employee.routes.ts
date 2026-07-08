@@ -12,3 +12,6 @@ employeeRoutes.get("/employeeTypes", fetchEmployeeTypes)
 employeeRoutes.get("/departmentStatsByCountry/:countryId", fetchEmployeDepartmentStats)
 employeeRoutes.get("/employeeType/headcountByCountry/:countryId", fetchEmployeeTypeCount)
 employeeRoutes.get("/employeeGender/headcountByCountry/:countryId", fetchEmployeeGenderCount)
+employeeRoutes.get("/api/test", (c) => {
+  return c.json({ message: "API is working" });
+});

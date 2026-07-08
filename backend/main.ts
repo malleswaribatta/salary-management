@@ -1,3 +1,5 @@
 import { app } from "./src/app.ts";
 
-Deno.serve({port: 8002},app.fetch);
+const port = Number(Deno.env.get("PORT")) || 8002;
+
+Deno.serve({ port }, app.fetch);

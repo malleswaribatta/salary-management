@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useMemo } from "react";
 import {
   getEmployees,
@@ -140,7 +140,6 @@ const [searchText, setSearchText] = useState("");
           setSelectedEmployee={setSelectedEmployee}
           handleDeleteClick={handleDeleteClick}
           setIsAddModalOpen={setIsAddModalOpen}
-          setSearchText={setSearchText}
           setSearchInput={setSearchInput}
           onSearch={() => {console.log("=====> inside onsearch") 
             return setSearchText(searchInput)}}

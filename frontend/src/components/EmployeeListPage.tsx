@@ -1,7 +1,6 @@
 import {
   Button,
   ButtonGroup,
-  Chip,
   Stack,
   TableBody,
   TableCell,
@@ -24,7 +23,6 @@ type Props = {
   setSelectedEmployee: (employee: Employee) => void;
   handleDeleteClick: (employee: Employee) => void;
   setIsAddModalOpen: (value: boolean) => void;
-  setSearchText: (value: string) => void;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   onSearch: () => void;
 };
@@ -39,7 +37,6 @@ export function EmployeeList({
   setSelectedEmployee,
   handleDeleteClick,
   setIsAddModalOpen,
-  setSearchText,
   setSearchInput,
   onSearch,
 }: Props) {

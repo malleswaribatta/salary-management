@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { DepartmentStats, EmployeeTypeeCount, GenderCount } from "../types/employee";
 
-const BASE_URL = "http://localhost:8002/api";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function getEmployees() {
   const response = await axios.get(`${BASE_URL}/employee`);

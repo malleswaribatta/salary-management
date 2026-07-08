@@ -37,8 +37,17 @@ export const fetchEmployee = async (c: Context) => {
     const result = await getEmployeeService(id);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({error: err.message }, 400);
+  } catch (error: any) {
+    console.error(error);
+
+  return c.json(
+    {
+      error: String(error),
+      stack: error instanceof Error ? error.stack : null,
+    },
+    500,
+  );
+    // return c.json({error: err.message }, 400);
   }
 };
 

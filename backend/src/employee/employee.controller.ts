@@ -22,8 +22,18 @@ export const createEmployee = async (c: Context) => {
     const result = await createEmployeeService(validatedData);
     console.log("result---->. ", result);
     return c.json({ success: true, data: result });
-  } catch (err: any) {
-    return c.json({ success: false, error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -37,7 +47,7 @@ export const fetchEmployee = async (c: Context) => {
     const result = await getEmployeeService(id);
 
     return c.json({ data: result });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
     return c.json(

@@ -69,7 +69,6 @@ export function AddEmployeeModal({ onClose, onCreate }: Props) {
   }, []);
 
   const handleSave = () => {
-    console.log("joindate-->", joiningDate);
     if (!joiningDate) {
       alert("Joining date is required");
       return;

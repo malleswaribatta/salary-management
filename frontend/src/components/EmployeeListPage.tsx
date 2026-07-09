@@ -61,10 +61,8 @@ export function EmployeeList({
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                console.log("inside if---> ", e.key);
                 onSearch();
               }
-              console.log("outside if---> ", e.key);
               return;
             }}
           />

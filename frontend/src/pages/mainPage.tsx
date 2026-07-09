@@ -63,8 +63,7 @@ export function MainPage() {
       await createEmployee(data);
       await loadEmployees();
       alert("Employee created successfully");
-    } catch (err) {
-      console.log("--->", err);
+    } catch {
       alert("Failed to create employee");
     }
   };
@@ -82,13 +81,13 @@ export function MainPage() {
   }, [employees, searchText]);
 
   useEffect(() => {
-  const fetchEmployees = async () => {
-    const res = await getEmployees();
-    setEmployees(res.data);
-  };
+    const fetchEmployees = async () => {
+      const res = await getEmployees();
+      setEmployees(res.data);
+    };
 
-  fetchEmployees();
-}, []);
+    fetchEmployees();
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -146,10 +145,7 @@ export function MainPage() {
           setIsAddModalOpen={setIsAddModalOpen}
           setSearchText={setSearchText}
           setSearchInput={setSearchInput}
-          onSearch={() => {
-            console.log("=====> inside onsearch");
-            return setSearchText(searchInput);
-          }}
+          onSearch={() => setSearchText(searchInput)}
         />
       )}
 

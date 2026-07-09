@@ -2,13 +2,12 @@ import { Hono } from "@hono/hono";
 import { employeeRoutes } from "./employee/employee.routes.ts";
 import { cors } from "@hono/hono/cors";
 export const app = new Hono();
-
 app.use(
   "*",
   cors({
     origin: [
-      "http://localhost:5175",
-      "https://salary-management-frontend.up.railway.app",
+      "http://localhost:5173",
+      Deno.env.get("FRONTEND_URL")!,
     ],
     credentials: true,
   }),

@@ -1,17 +1,18 @@
-# Base image that already has Deno installed
 FROM denoland/deno:2.5.2
 
-# Working directory inside the container
 WORKDIR /app
 
-# Copy the backend source code
+# Copy the application
 COPY . .
 
-# Cache Deno dependencies
+# Cache dependencies
 RUN deno cache main.ts
 
-# Generate Prisma Client
+# Generate Prisma client
 RUN deno task db:generate
+
+# Document the listening port
+EXPOSE 8002
 
 # Start the application
 CMD ["deno", "task", "start"]

@@ -48,16 +48,22 @@ export const fetchEmployee = async (c: Context) => {
 
     return c.json({ data: result });
   } catch (error: unknown) {
+    console.error("===== ERROR =====");
     console.error(error);
+
+    if (error instanceof Error) {
+      console.error("Message:", error.message);
+      console.error("Name:", error.name);
+      console.error("Stack:", error.stack);
+    }
 
     return c.json(
       {
-        error: String(error),
-        stack: error instanceof Error ? error.stack : null,
+        error,
+        message: error instanceof Error ? error.message : String(error),
       },
       500,
     );
-    // return c.json({error: err.message }, 400);
   }
 };
 

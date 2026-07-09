@@ -6,7 +6,7 @@ export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
-    seed: "deno run -A --env=.env ./prisma/seed.ts"
+    seed: "deno run -A --env=.env ./prisma/seed.ts",
   },
   datasource: {
     url: Deno.env.get("DATABASE_URL"),

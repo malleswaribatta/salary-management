@@ -6,7 +6,10 @@ export const app = new Hono();
 app.use(
   "*",
   cors({
-    origin:[ "http://localhost:5175", "https://salary-management-frontend.up.railway.app"],
+    origin: [
+      "http://localhost:5175",
+      "https://salary-management-frontend.up.railway.app",
+    ],
     credentials: true,
   }),
 );

@@ -1,0 +1,52 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  backend-ci:
+    name: Validate Backend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Verify Deno Installation
+        run: deno --version
+
+      - name: Check Formatting
+        run: deno fmt --check
+
+      - name: Run Linter
+        run: deno lint
+
+      - name: Type Check
+        run: deno check main.ts
+
+      - name: Generate Prisma Client
+        run: deno task db:generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Build Application
+        run: deno task build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

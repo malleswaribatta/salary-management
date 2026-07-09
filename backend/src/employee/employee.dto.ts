@@ -34,10 +34,8 @@ export const UpdateEmployeeSchema = z.object({
   countryId: z.number().min(1, "Country is required"),
 
   employeeTypeId: z.number().min(1, "EmployeeType is required"),
-  
-  salary: z
-    .number()
-    .positive("Salary must be greater than 0"),
+
+  salary: z.number().positive("Salary must be greater than 0"),
 });
 
 export type CreateEmployeeDTO = z.infer<typeof CreateEmployeeSchema>;

@@ -1,5 +1,3 @@
-// deno-lint-ignore-file require-await
-import { count } from "node:console";
 import { prisma } from "../../db.ts";
 import { CreateEmployeeDTO, UpdateEmployeeSchema } from "./employee.dto.ts";
 import {

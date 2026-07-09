@@ -46,3 +46,15 @@ export type SalarySummary = {
   maxSalary: number;
   totalPayroll: number;
 };
+
+export type CreateEmployeePayload = {
+  name: string;
+  email: string;
+  gender: string;
+  role: string;
+  department: string;
+  countryId: number;
+  employeeTypeId: number;
+  salary: number;
+  joiningDate: string;
+};

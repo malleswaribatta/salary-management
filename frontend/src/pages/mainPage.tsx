@@ -5,7 +5,7 @@ import {
   deleteEmployee,
   getEmployees,
 } from "../api/employeeApi";
-import type { Employee } from "../types/employee";
+import type { CreateEmployeePayload, Employee } from "../types/employee";
 import "./mainPage.css";
 import { EditEmployeeModal } from "../components/EditEmployeeModal";
 import { DeleteEmployeeModal } from "../components/DeleteEmployeeModal";
@@ -58,7 +58,7 @@ export function MainPage() {
     }
   };
 
-  const handleCreateEmployee = async (data: any) => {
+  const handleCreateEmployee = async (data: CreateEmployeePayload) => {
     try {
       await createEmployee(data);
       await loadEmployees();
@@ -82,8 +82,13 @@ export function MainPage() {
   }, [employees, searchText]);
 
   useEffect(() => {
-    loadEmployees();
-  }, []);
+  const fetchEmployees = async () => {
+    const res = await getEmployees();
+    setEmployees(res.data);
+  };
+
+  fetchEmployees();
+}, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

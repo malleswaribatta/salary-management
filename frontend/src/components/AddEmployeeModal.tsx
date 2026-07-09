@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import type { Lookup } from "../types/employee";
+import { useEffect, useState, type ChangeEvent } from "react";
+import type { CreateEmployeePayload, Lookup } from "../types/employee";
 import { getCountries, getEmployeeTypes } from "../api/lookupApi";
 // import "react-datepicker/dist/react-datepicker.css";
 // import DatePicker from "react-datepicker";
@@ -24,9 +24,11 @@ import {
 } from "@mui/material";
 import type { Dayjs } from "dayjs";
 
+
+
 type Props = {
   onClose: () => void;
-  onCreate: (data: any) => void;
+  onCreate: (data: CreateEmployeePayload) => void;
 };
 
 export function AddEmployeeModal({ onClose, onCreate }: Props) {
@@ -45,7 +47,7 @@ export function AddEmployeeModal({ onClose, onCreate }: Props) {
   const [employeeTypes, setEmployeeTypes] = useState<Lookup[]>([]);
   const [countries, setCountries] = useState<Lookup[]>([]);
   const [joiningDate, setJoiningDate] = useState<Dayjs | null>(null);
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({

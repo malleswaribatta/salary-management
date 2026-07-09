@@ -20,7 +20,6 @@ export const createEmployee = async (c: Context) => {
     const validatedData = CreateEmployeeSchema.parse(body);
 
     const result = await createEmployeeService(validatedData);
-    console.log("result---->. ", result);
     return c.json({ success: true, data: result });
   } catch (err: unknown) {
     const message = err instanceof Error

@@ -166,7 +166,6 @@ export const getEmployeeTypeCount = async (countryId: number) => {
     "full-time": fullTimeCount,
     contract: contractCount,
   };
-  console.log(fullTimeCount, "-----", contractCount);
   return result;
 };
 

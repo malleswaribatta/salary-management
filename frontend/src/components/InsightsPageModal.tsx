@@ -88,10 +88,6 @@ export default function InsightsPageModal() {
           getDepartmentStatsByCountry(countryId),
         ]);
 
-        console.log("Gender Details:", genderDetails);
-        console.log("Employee Type Details:", employeeTypeDetails);
-        console.log("Department Stats:", departmentDetails);
-
         setGender(genderDetails);
         setEmployeeType(employeeTypeDetails);
         setDepartmentStats(departmentDetails);

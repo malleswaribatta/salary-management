@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMemo } from "react";
 import {
-  getEmployees,
-  deleteEmployee,
   createEmployee,
+  deleteEmployee,
+  getEmployees,
 } from "../api/employeeApi";
 import type { Employee } from "../types/employee";
 import "./mainPage.css";
@@ -29,9 +29,8 @@ export function MainPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEmployeeListPage, setIsEmployeeListPage] = useState(true);
   const [isInsightsPage, setIsInsightsPage] = useState(false);
-const [searchInput, setSearchInput] = useState("");
-const [searchText, setSearchText] = useState("");
-
+  const [searchInput, setSearchInput] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   async function loadEmployees() {
     const res = await getEmployees();
@@ -65,22 +64,22 @@ const [searchText, setSearchText] = useState("");
       await loadEmployees();
       alert("Employee created successfully");
     } catch (err) {
-      console.log("--->", err)
+      console.log("--->", err);
       alert("Failed to create employee");
     }
   };
 
- const filteredEmployees = useMemo(() => {
-  const search = searchText.trim().toLowerCase();
+  const filteredEmployees = useMemo(() => {
+    const search = searchText.trim().toLowerCase();
 
-  if (!search) return employees;
+    if (!search) return employees;
 
-  return employees.filter(
-    (employee) =>
-      employee.name.toLowerCase().includes(search) ||
-      employee.email.toLowerCase().includes(search)
-  );
-}, [employees, searchText]);
+    return employees.filter(
+      (employee) =>
+        employee.name.toLowerCase().includes(search) ||
+        employee.email.toLowerCase().includes(search),
+    );
+  }, [employees, searchText]);
 
   useEffect(() => {
     loadEmployees();
@@ -142,8 +141,10 @@ const [searchText, setSearchText] = useState("");
           setIsAddModalOpen={setIsAddModalOpen}
           setSearchText={setSearchText}
           setSearchInput={setSearchInput}
-          onSearch={() => {console.log("=====> inside onsearch") 
-            return setSearchText(searchInput)}}
+          onSearch={() => {
+            console.log("=====> inside onsearch");
+            return setSearchText(searchInput);
+          }}
         />
       )}
 

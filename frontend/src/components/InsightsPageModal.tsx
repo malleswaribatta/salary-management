@@ -28,7 +28,7 @@ const EMPTY_SUMMARY: SalarySummary = {
 };
 
 function calculateSalarySummary(
-  departments: DepartmentStats[]
+  departments: DepartmentStats[],
 ): SalarySummary {
   if (!departments.length) return EMPTY_SUMMARY;
 
@@ -47,8 +47,7 @@ function calculateSalarySummary(
 
   return {
     headcount,
-    averageSalary:
-      headcount === 0 ? 0 : Math.round(totalPayroll / headcount),
+    averageSalary: headcount === 0 ? 0 : Math.round(totalPayroll / headcount),
     minSalary,
     maxSalary,
     totalPayroll,
@@ -153,15 +152,16 @@ export default function InsightsPageModal() {
               size="small"
               onChange={(e) => setCountry(e.target.value)}
               renderValue={(selected) =>
-                !selected ? (
-                  <Typography sx={{ color: "text.secondary" }}>
-                    Select Country
-                  </Typography>
-                ) : (
-                  countries.find((c) => c.id.toString() === selected)?.name ??
-                  ""
-                )
-              }
+                !selected
+                  ? (
+                    <Typography sx={{ color: "text.secondary" }}>
+                      Select Country
+                    </Typography>
+                  )
+                  : (
+                    countries.find((c) => c.id.toString() === selected)?.name ??
+                      ""
+                  )}
             >
               {countries.map((country) => (
                 <MenuItem key={country.id} value={country.id.toString()}>
@@ -172,50 +172,52 @@ export default function InsightsPageModal() {
           </FormControl>
         </Box>
 
-        {!country ? (
-          <Box
-            sx={{
-              height: 450,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography color="text.secondary">
-              Select a country to view salary insights
-            </Typography>
-          </Box>
-        ) : (
-          <Box sx={{ gap: 3, pb: 20 }}>
-            <StatsSummary summary={summary} />
-
+        {!country
+          ? (
             <Box
               sx={{
-                display: "grid",
-                gridTemplateColumns: {
-                  xs: "1fr",
-                  md: "repeat(2, 1fr)",
-                },
-                gap: 3,
+                height: 450,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <GenderBreakdownCard
-                male={gender?.data.male ?? 0}
-                female={gender?.data.female ?? 0}
-                other={gender?.data.other ?? 0}
-              />
-
-              <EmployeeTypeCard
-                FullTime={employeeType?.data["full-time"] ?? 0}
-                Contract={employeeType?.data.contract ?? 0}
-              />
+              <Typography color="text.secondary">
+                Select a country to view salary insights
+              </Typography>
             </Box>
+          )
+          : (
+            <Box sx={{ gap: 3, pb: 20 }}>
+              <StatsSummary summary={summary} />
 
-            <Box sx={{ mt: 3 }}>
-              <DepartmentStatsCard departments={departmentStats} />
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "1fr",
+                    md: "repeat(2, 1fr)",
+                  },
+                  gap: 3,
+                }}
+              >
+                <GenderBreakdownCard
+                  male={gender?.data.male ?? 0}
+                  female={gender?.data.female ?? 0}
+                  other={gender?.data.other ?? 0}
+                />
+
+                <EmployeeTypeCard
+                  FullTime={employeeType?.data["full-time"] ?? 0}
+                  Contract={employeeType?.data.contract ?? 0}
+                />
+              </Box>
+
+              <Box sx={{ mt: 3 }}>
+                <DepartmentStatsCard departments={departmentStats} />
+              </Box>
             </Box>
-          </Box>
-        )}
+          )}
       </Box>
     </Box>
   );

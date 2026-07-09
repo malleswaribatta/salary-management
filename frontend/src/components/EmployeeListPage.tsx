@@ -2,13 +2,13 @@ import {
   Button,
   ButtonGroup,
   Stack,
+  Table,
   TableBody,
   TableCell,
+  TableHead,
   TableRow,
   TextField,
   Typography,
-  Table,
-  TableHead,
 } from "@mui/material";
 import type { Employee } from "../types/employee";
 import "./EmployeeListPage.css";
@@ -61,12 +61,11 @@ export function EmployeeList({
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                console.log("inside if---> ", e.key)
+                console.log("inside if---> ", e.key);
                 onSearch();
               }
-            console.log("outside if---> ", e.key)
-                return;
-
+              console.log("outside if---> ", e.key);
+              return;
             }}
           />
 
@@ -109,8 +108,7 @@ export function EmployeeList({
                 >
                   <Button
                     onClick={() =>
-                      setOpenMenuId(openMenuId === emp.id ? null : emp.id)
-                    }
+                      setOpenMenuId(openMenuId === emp.id ? null : emp.id)}
                   >
                     ⋮
                   </Button>

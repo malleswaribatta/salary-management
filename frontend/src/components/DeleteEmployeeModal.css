@@ -46,13 +46,12 @@
   color: black;
 }
 
-
 .cancel-button:hover {
   background: #dcdbdb;
 }
 
-.delete-button:hover{
-    background-color: rgb(228, 76, 76);
+.delete-button:hover {
+  background-color: rgb(228, 76, 76);
 }
 
 .warning-icon {

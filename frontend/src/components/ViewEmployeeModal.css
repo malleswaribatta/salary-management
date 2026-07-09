@@ -86,7 +86,7 @@
 
 .action-buttons {
   display: flex;
-  justify-content: flex-end;  /* 🔥 RIGHT ALIGN */
+  justify-content: flex-end; /* 🔥 RIGHT ALIGN */
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -130,13 +130,13 @@ section h4 {
   font-weight: 600;
   color: #1677ff;
   border-bottom: 2px solid #d0e3f5;
-  padding-bottom: 8px; 
+  padding-bottom: 8px;
 }
 
 section p {
-    font-size: 14px;
-    color: black;
-    justify-content:"first baseline";
+  font-size: 14px;
+  color: black;
+  justify-content: "first baseline";
 }
 
 .grid-row > div {
@@ -179,29 +179,26 @@ section p {
 }
 
 .profile {
-    border: 1px solid #f8f9fa;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    padding: 0px 20px 0px 20px;
+  border: 1px solid #f8f9fa;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 0px 20px 0px 20px;
 }
-
 
 .profile-header {
   display: flex;
   align-items: center; /* vertical alignment */
-  gap: 12px;  
+  gap: 12px;
 }
-
-
 
 .name {
   color: black;
-  margin: 0;        /* 🔥 remove default spacing */
+  margin: 0; /* 🔥 remove default spacing */
   padding-top: 20px;
 }
 
 .email {
-  margin: 4px 0 0 0;  /* small controlled gap */
+  margin: 4px 0 0 0; /* small controlled gap */
   color: gray;
   font-size: 14px;
   padding-bottom: 15px;

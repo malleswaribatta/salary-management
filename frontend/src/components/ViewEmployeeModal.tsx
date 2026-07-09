@@ -39,12 +39,17 @@ export function ViewEmployeeModal({
             alignItems: "center",
           }}
         >
-          <Typography variant="h5"sx={{
+          <Typography
+            variant="h5"
+            sx={{
               fontWeight: 530,
               color: "#090909",
               letterSpacing: 1,
               textTransform: "uppercase",
-            }}>{employee.name}</Typography>
+            }}
+          >
+            {employee.name}
+          </Typography>
 
           <IconButton onClick={onClose}></IconButton>
         </Stack>
@@ -79,7 +84,7 @@ export function ViewEmployeeModal({
                 </Avatar>
 
                 <Box>
-                  <Typography variant="h6" >{employee.name}</Typography>
+                  <Typography variant="h6">{employee.name}</Typography>
 
                   <Typography color="text.secondary">
                     {employee.email}
@@ -97,7 +102,8 @@ export function ViewEmployeeModal({
               </Stack>
 
               {/* Actions */}
-              {/* <Stack
+              {
+                /* <Stack
               direction="row"
               spacing={2}
             >
@@ -115,7 +121,8 @@ export function ViewEmployeeModal({
               >
                 Delete
               </Button>
-            </Stack> */}
+            </Stack> */
+              }
               <Box
                 sx={{
                   display: "flex",
@@ -142,12 +149,16 @@ export function ViewEmployeeModal({
               borderRadius: 2,
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{
-              fontWeight: 500,
-              color: "#078dda",
-              letterSpacing: 1,
-              textTransform: "uppercase",
-            }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontWeight: 500,
+                color: "#078dda",
+                letterSpacing: 1,
+                textTransform: "uppercase",
+              }}
+            >
               Personal Information
             </Typography>
 
@@ -180,12 +191,16 @@ export function ViewEmployeeModal({
               borderRadius: 2,
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{
-              fontWeight: 500,
-              color: "#078dda",
-              letterSpacing: 1,
-              textTransform: "uppercase",
-            }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontWeight: 500,
+                color: "#078dda",
+                letterSpacing: 1,
+                textTransform: "uppercase",
+              }}
+            >
               Role & Employment
             </Typography>
 
@@ -218,12 +233,16 @@ export function ViewEmployeeModal({
               borderRadius: 2,
             }}
           >
-            <Typography variant="h6" gutterBottom sx={{
-              fontWeight: 500,
-              color: "#078dda",
-              letterSpacing: 1,
-              textTransform: "uppercase",
-            }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontWeight: 500,
+                color: "#078dda",
+                letterSpacing: 1,
+                textTransform: "uppercase",
+              }}
+            >
               Compensation
             </Typography>
 

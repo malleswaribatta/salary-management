@@ -31,13 +31,13 @@ export type EmployeeTypeeCount = {
   };
 };
 
-export interface DepartmentStats  {
-    department: string;
-    headCount: number;
-    avgSalary: number;
-    minSalary: number;
-    maxSalary: number;
-};
+export interface DepartmentStats {
+  department: string;
+  headCount: number;
+  avgSalary: number;
+  minSalary: number;
+  maxSalary: number;
+}
 
 export type SalarySummary = {
   headcount: number;
@@ -45,6 +45,4 @@ export type SalarySummary = {
   minSalary: number;
   maxSalary: number;
   totalPayroll: number;
-}
-
-
+};

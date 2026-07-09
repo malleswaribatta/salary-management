@@ -50,25 +50,25 @@
   background: white;
   border: 1px solid #ddd;
   padding: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   z-index: 10;
 }
 
 .container {
   max-width: 1100px;
-  margin: 0 auto;      /* 🔥 centers content */
-  padding: 20px;       /* breathing space */
+  margin: 0 auto; /* 🔥 centers content */
+  padding: 20px; /* breathing space */
 }
 
 .action {
-    color: black;
-    background-color: white;
-    border: 0px solid #e7eaef;
-    border-radius: 5px;
-    font-size: 15px;
+  color: black;
+  background-color: white;
+  border: 0px solid #e7eaef;
+  border-radius: 5px;
+  font-size: 15px;
 }
 .action:hover {
-    background-color: #e7eaef;
-    cursor: pointer;
+  background-color: #e7eaef;
+  cursor: pointer;
 }

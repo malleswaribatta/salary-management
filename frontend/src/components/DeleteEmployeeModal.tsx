@@ -23,8 +23,8 @@ export function DeleteEmployeeModal({
           <h2>Delete employee?</h2>
         </div>
         <p>
-          This will permanently delete <strong>{employeeName}</strong>. This
-          action cannot be undone.
+          This will permanently delete{" "}
+          <strong>{employeeName}</strong>. This action cannot be undone.
         </p>
         <div className="modal-actions">
           <button type="button" className="cancel-button" onClick={onClose}>

@@ -31,6 +31,7 @@ async function main() {
       { name: "Full-Time", id: 1 },
       { name: "Contract", id: 2 },
     ],
+    skipDuplicates: true,
   });
 
   console.log("Seed data inserted!");

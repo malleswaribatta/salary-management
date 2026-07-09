@@ -116,8 +116,7 @@ export function EditEmployeeModal({
                 setFormData({
                   ...formData,
                   role: e.target.value,
-                })
-              }
+                })}
             />
           </div>
 
@@ -130,8 +129,7 @@ export function EditEmployeeModal({
                 setFormData({
                   ...formData,
                   department: e.target.value,
-                })
-              }
+                })}
             />
           </div>
 
@@ -144,8 +142,7 @@ export function EditEmployeeModal({
                 setFormData({
                   ...formData,
                   countryId: Number(e.target.value),
-                })
-              }
+                })}
             >
               {countries.map((country) => (
                 <option key={country.id} value={country.id}>
@@ -164,8 +161,7 @@ export function EditEmployeeModal({
                 setFormData({
                   ...formData,
                   employeeTypeId: Number(e.target.value),
-                })
-              }
+                })}
             >
               {employeeTypes.map((type) => (
                 <option key={type.id} value={type.id}>
@@ -189,8 +185,7 @@ export function EditEmployeeModal({
                 setFormData({
                   ...formData,
                   salary: Number(e.target.value),
-                })
-              }
+                })}
             />
           </div>
         </div>

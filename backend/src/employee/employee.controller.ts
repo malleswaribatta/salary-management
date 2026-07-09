@@ -4,12 +4,12 @@ import {
   createEmployeeService,
   deleteEmployeeService,
   getCountriesService,
+  getEmployeeDepartmentStats,
+  getEmployeeGenderCount,
   getEmployeeService,
   getEmployeeTypeCount,
   getEmployeeTypesService,
   updateEmployeeService,
-  getEmployeeDepartmentStats,
-  getEmployeeGenderCount,
 } from "./employee.service.ts";
 
 export const createEmployee = async (c: Context) => {

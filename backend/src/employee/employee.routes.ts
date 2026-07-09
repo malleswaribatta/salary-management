@@ -3,12 +3,12 @@ import {
   createEmployee,
   deleteEmployee,
   fetchCountries,
+  fetchEmployeDepartmentStats,
   fetchEmployee,
+  fetchEmployeeGenderCount,
+  fetchEmployeeTypeCount,
   fetchEmployeeTypes,
   updateEmployee,
-  fetchEmployeeTypeCount,
-  fetchEmployeDepartmentStats,
-  fetchEmployeeGenderCount,
 } from "./employee.controller.ts";
 
 export const employeeRoutes = new Hono();

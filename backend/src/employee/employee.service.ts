@@ -1,13 +1,13 @@
 import { prisma } from "../../db.ts";
 import { CreateEmployeeDTO, UpdateEmployeeSchema } from "./employee.dto.ts";
 import {
-  createRoleIfNotExists,
   createDepartmentIfNotExists,
+  createRoleIfNotExists,
 } from "./employee.utility.ts";
 import {
+  validateCountry,
   validateEmail,
   validateEmployeeType,
-  validateCountry,
 } from "./employee.validate.ts";
 
 export const createEmployeeService = async (data: CreateEmployeeDTO) => {

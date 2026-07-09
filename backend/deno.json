@@ -3,13 +3,17 @@
     "dev": "deno run -A --env=.env --watch main.ts",
     "start": "deno run -A main.ts",
     "build": "deno compile -A --env=.env -o app main.ts",
-    "db:generate": "deno run -A --env=.env npm:prisma generate",
+    "db:generate": "deno run -A npm:prisma generate",
     "db:push": "deno run -A --env=.env npm:prisma db push",
     "db:pull": "deno run -A --env=.env npm:prisma db pull",
     "db:migrate": "deno run -A --env=.env npm:prisma migrate dev --name init",
     "db:seed": "deno run -A --env=.env npm:prisma db seed",
     "db:reset": "deno run -A --env=.env npm:prisma migrate reset",
-    "db:status": "deno run -A --env=.env npm:prisma migrate status"
+    "db:status": "deno run -A --env=.env npm:prisma migrate status",
+    "check": "deno check main.ts",
+    "fmt": "deno fmt",
+    "fmt:check": "deno fmt --check",
+    "lint": "deno lint"
   },
   "imports": {
     "@hono/hono": "jsr:@hono/hono@^4.12.24",

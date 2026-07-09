@@ -61,8 +61,18 @@ export const fetchCountries = async (c: Context) => {
     const result = await getCountriesService(id);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -76,8 +86,18 @@ export const fetchEmployeeTypes = async (c: Context) => {
     const result = await getEmployeeTypesService(id);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -88,8 +108,18 @@ export const updateEmployee = async (c: Context) => {
     const result = await updateEmployeeService(id, data);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -99,8 +129,18 @@ export const deleteEmployee = async (c: Context) => {
     const result = await deleteEmployeeService(id);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -110,8 +150,18 @@ export const fetchEmployeDepartmentStats = async (c: Context) => {
     const result = await getEmployeeDepartmentStats(countryId);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 
@@ -121,8 +171,18 @@ export const fetchEmployeeTypeCount = async (c: Context) => {
     const result = await getEmployeeTypeCount(countryId);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };
 export const fetchEmployeeGenderCount = async (c: Context) => {
@@ -131,7 +191,17 @@ export const fetchEmployeeGenderCount = async (c: Context) => {
     const result = await getEmployeeGenderCount(countryId);
 
     return c.json({ data: result });
-  } catch (err: any) {
-    return c.json({ error: err.message }, 400);
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
   }
 };

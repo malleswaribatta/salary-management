@@ -68,8 +68,8 @@ export const getEmployeeDepartmentCountService = async () => {
       },
     },
   });
-
-  return departments.map((department) => ({
+  type Department = (typeof departments)[number];
+  return departments.map((department: Department) => ({
     department: department.name,
     count: department._count,
   }));

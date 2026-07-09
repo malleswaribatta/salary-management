@@ -46,3 +46,5 @@ export type SalarySummary = {
   maxSalary: number;
   totalPayroll: number;
 }
+
+

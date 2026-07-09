@@ -130,8 +130,12 @@ export const getEmployeeDepartmentStats = async (countryId: number) => {
     }),
   ]);
 
-  const result = departmentStats.map((stat) => ({
-    department: departments.find((d) => d.id === stat.departmentId)?.name,
+  type DepartmentStat = (typeof departmentStats)[number];
+  type Department = (typeof departments)[number];
+
+  const result = departmentStats.map((stat: DepartmentStat) => ({
+    department: departments.find((d: Department) => d.id === stat.departmentId)
+      ?.name,
     headCount: Number(stat._count._all ?? 0),
     avgSalary: Number(stat._avg.salary ?? 0),
     minSalary: Number(stat._min.salary ?? 0),

@@ -8,8 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Hello GitHub Actions"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - run: pwd
+      - name: Show Current Directory
+        run: pwd
 
-      - run: ls -la
+      - name: List Files
+        run: ls -la
+
+      - name: List Repository Files
+        run: find . -maxdepth 2

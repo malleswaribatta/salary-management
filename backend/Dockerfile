@@ -5,11 +5,11 @@ WORKDIR /app
 # Copy the application
 COPY . .
 
-# Cache dependencies
-RUN deno cache main.ts
-
 # Generate Prisma client
 RUN deno task db:generate
+
+# Cache dependencies
+RUN deno cache main.ts
 
 # Document the listening port
 EXPOSE 8002

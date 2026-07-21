@@ -103,28 +103,22 @@ export default function InsightsPageModal() {
   return (
     <Box
       sx={{
-        width: "50%",
-        minHeight: "80vh",
-        overflow: "auto",
-        bgcolor: "#f5f5f5",
-        py: 4,
-        px: 2,
+        flex: 1,
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: "50vh",
+        flexDirection: "column",
+        minHeight: 0,
+        maxWidth: 1100,
+        mx: "auto",
+        px: 2.5,
+        bgcolor: "#fff",
+        borderRadius: 2,
       }}
     >
       <Box
         sx={{
-          width: "50%",
-          height: "85vh",
-          flex: 6,
-          bgcolor: "#fff",
-          borderRadius: 5,
-          border: "1px solid #E5E7EB",
-          boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-          p: 3,
+          flex: 1,
+          overflowY: "auto",
+          p: 2.5,
         }}
       >
         <Box
@@ -184,7 +178,7 @@ export default function InsightsPageModal() {
             </Box>
           )
           : (
-            <Box sx={{ gap: 3, pb: 20 }}>
+            <Box sx={{ gap: 3 }}>
               <StatsSummary summary={summary} />
 
               <Box

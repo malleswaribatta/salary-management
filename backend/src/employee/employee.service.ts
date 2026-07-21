@@ -192,3 +192,45 @@ export const getEmployeeGenderCount = async (countryId: number) => {
 
   return result;
 };
+
+export const uploadProfileImageService = async (
+  id: number,
+  file: File,
+): Promise<{ profileImageKey: string }> => {
+  const employee = await prisma.employee.findUnique({ where: { id } });
+  if (!employee) {
+    throw new Error("Employee not found");
+  }
+
+  const allowedMimeTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "image/webp",
+  ];
+  if (!allowedMimeTypes.includes(file.type)) {
+    throw new Error("Only image files (JPEG, PNG, GIF, WebP) are allowed");
+  }
+
+  const maxSize = 5 * 1024 * 1024;
+  if (file.size > maxSize) {
+    throw new Error("File size must be less than 5 MB");
+  }
+
+  const ext = file.name.split(".").pop() || "jpg";
+  const profileImageKey = `${crypto.randomUUID()}.${ext}`;
+
+  const uploadsDir = `${Deno.cwd()}/uploads/profile-images`;
+  await Deno.mkdir(uploadsDir, { recursive: true });
+
+  const filePath = `${uploadsDir}/${profileImageKey}`;
+  const buffer = await file.arrayBuffer();
+  await Deno.writeFile(filePath, new Uint8Array(buffer));
+
+  await prisma.employee.update({
+    where: { id },
+    data: { profileImageKey },
+  });
+
+  return { profileImageKey };
+};

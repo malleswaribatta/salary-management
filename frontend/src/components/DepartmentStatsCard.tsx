@@ -53,7 +53,7 @@ export default function DepartmentStatsCard({
           borderRadius: 2,
         }}
       >
-        <Table sx={{ width: 780, m: 2 }} stickyHeader>
+        <Table sx={{ width: "100%", m: 2 }} stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell sx={tableHeaderCellStyle}>Department</TableCell>

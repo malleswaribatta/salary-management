@@ -1,4 +1,5 @@
 import type { Employee } from "../types/employee";
+import { getProfileImageUrl } from "../api/employeeApi";
 import "./ViewEmployeeModal.css";
 import {
   Avatar,
@@ -74,10 +75,12 @@ export function ViewEmployeeModal({
                 }}
               >
                 <Avatar
+                  src={getProfileImageUrl(employee.profileImageKey) ?? undefined}
                   sx={{
                     width: 64,
                     height: 64,
                     fontSize: 28,
+                    bgcolor: "#1976d2",
                   }}
                 >
                   {employee.name.charAt(0).toUpperCase()}

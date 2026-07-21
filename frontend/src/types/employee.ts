@@ -14,6 +14,7 @@ export type Employee = {
   country: Lookup;
   employeeType: Lookup;
   salary: number;
+  profileImageKey?: string | null;
 };
 
 export type GenderCount = {
@@ -57,4 +58,5 @@ export type CreateEmployeePayload = {
   employeeTypeId: number;
   salary: number;
   joiningDate: string;
+  profileImage?: File | null;
 };

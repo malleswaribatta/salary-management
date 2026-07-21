@@ -1,7 +1,8 @@
 import { getCountries, getEmployeeTypes } from "../api/lookupApi";
+import { getProfileImageUrl } from "../api/employeeApi";
 import type { Employee, Lookup } from "../types/employee";
 import "./EditEmployeeModal.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { updateEmployee } from "../api/employeeApi";
 
 type EditEmployeeModalProps = {
@@ -24,6 +25,24 @@ export function EditEmployeeModal({
   });
   const [countries, setCountries] = useState<Lookup[]>([]);
   const [employeeTypes, setEmployeeTypes] = useState<Lookup[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_profileImage, setProfileImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select a valid image file");
+      return;
+    }
+
+    setProfileImage(file);
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+  };
 
   async function handleSave() {
     try {
@@ -64,7 +83,29 @@ export function EditEmployeeModal({
 
         <div className="modal-toolbar">
           <div className="toolbar-left">
-            <div className="avatar">{employee.name.charAt(0)}</div>
+            <div
+              className="avatar image-upload-trigger"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              {previewUrl ? (
+                <img src={previewUrl} alt="Profile preview" className="avatar-preview" />
+              ) : getProfileImageUrl(employee.profileImageKey) ? (
+                <img
+                  src={getProfileImageUrl(employee.profileImageKey)!}
+                  alt="Profile"
+                  className="avatar-preview"
+                />
+              ) : (
+                employee.name.charAt(0)
+              )}
+            </div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept="image/*"
+              hidden
+              onChange={handleImageChange}
+            />
 
             <h3 className="h3">Editing: {employee.name}</h3>
           </div>

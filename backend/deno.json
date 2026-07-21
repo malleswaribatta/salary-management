@@ -16,6 +16,7 @@
     "lint": "deno lint"
   },
   "imports": {
+    "@aws-sdk/client-s3": "npm:@aws-sdk/client-s3@^3.1091.0",
     "@hono/hono": "jsr:@hono/hono@^4.12.24",
     "@prisma/adapter-pg": "npm:@prisma/adapter-pg@^7.0.0",
     "@prisma/client": "npm:@prisma/client@^7.0.0",

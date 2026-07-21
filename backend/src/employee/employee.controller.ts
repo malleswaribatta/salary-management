@@ -10,6 +10,7 @@ import {
   getEmployeeTypeCount,
   getEmployeeTypesService,
   updateEmployeeService,
+  uploadProfileImageService,
 } from "./employee.service.ts";
 
 export const createEmployee = async (c: Context) => {
@@ -206,6 +207,37 @@ export const fetchEmployeeGenderCount = async (c: Context) => {
     const result = await getEmployeeGenderCount(countryId);
 
     return c.json({ data: result });
+  } catch (err: unknown) {
+    const message = err instanceof Error
+      ? err.message
+      : "An unexpected error occurred";
+
+    return c.json(
+      {
+        success: false,
+        error: message,
+      },
+      400,
+    );
+  }
+};
+
+export const uploadProfileImage = async (c: Context) => {
+  try {
+    const id = Number(c.req.param("id"));
+
+    const body = await c.req.parseBody();
+    const file = body["profileImage"];
+
+    if (!file || !(file instanceof File)) {
+      return c.json(
+        { success: false, error: "No image file provided" },
+        400,
+      );
+    }
+
+    const result = await uploadProfileImageService(id, file);
+    return c.json({ success: true, profileImageKey: result.profileImageKey });
   } catch (err: unknown) {
     const message = err instanceof Error
       ? err.message

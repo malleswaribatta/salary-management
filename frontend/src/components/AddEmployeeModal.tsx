@@ -1,15 +1,13 @@
-import { useEffect, useState, type ChangeEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import type { CreateEmployeePayload, Lookup } from "../types/employee";
 import { getCountries, getEmployeeTypes } from "../api/lookupApi";
-// import "react-datepicker/dist/react-datepicker.css";
-// import DatePicker from "react-datepicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import {
-  Avatar,
+  Box,
   Button,
   Dialog,
   DialogActions,
@@ -47,6 +45,24 @@ export function AddEmployeeModal({ onClose, onCreate }: Props) {
   const [employeeTypes, setEmployeeTypes] = useState<Lookup[]>([]);
   const [countries, setCountries] = useState<Lookup[]>([]);
   const [joiningDate, setJoiningDate] = useState<Dayjs | null>(null);
+  const [_profileImage, setProfileImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select a valid image file");
+      return;
+    }
+
+    setProfileImage(file);
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
@@ -79,9 +95,8 @@ export function AddEmployeeModal({ onClose, onCreate }: Props) {
       countryId: Number(formData.countryId),
       employeeTypeId: Number(formData.employeeTypeId),
       salary: Number(formData.salary),
-
-      // ✅ FIXED JOINING DATE
       joiningDate: joiningDate.toISOString().split("T")[0],
+      profileImage: _profileImage,
     });
 
     onClose();
@@ -121,7 +136,39 @@ export function AddEmployeeModal({ onClose, onCreate }: Props) {
             sx={{ justifyContent: "space-between", alignItems: "center" }}
           >
             <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-              <Avatar>+</Avatar>
+              <Box
+                onClick={() => fileInputRef.current?.click()}
+                sx={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  bgcolor: previewUrl ? "transparent" : "#1976d2",
+                  border: previewUrl ? "2px solid #1976d2" : "none",
+                }}
+              >
+                {previewUrl ? (
+                  <Box
+                    component="img"
+                    src={previewUrl}
+                    alt="Profile preview"
+                    sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <Typography sx={{ color: "white", fontSize: 20 }}>+</Typography>
+                )}
+              </Box>
+              <input
+                type="file"
+                ref={fileInputRef}
+                accept="image/*"
+                hidden
+                onChange={handleImageChange}
+              />
 
               <Typography variant="h6">Create Employee</Typography>
             </Stack>

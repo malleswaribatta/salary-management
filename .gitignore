@@ -11,3 +11,12 @@ coverage/
 *.lcov
 
 /generated/prisma
+
+# IDE
+.idea/
+
+# Archives
+*.zip
+
+# Uploaded files
+backend/src/storage/

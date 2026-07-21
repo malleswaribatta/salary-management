@@ -4,6 +4,7 @@ import {
   createEmployee,
   deleteEmployee,
   getEmployees,
+  uploadProfileImage,
 } from "../api/employeeApi";
 import type { CreateEmployeePayload, Employee } from "../types/employee";
 import "./mainPage.css";
@@ -31,6 +32,11 @@ export function MainPage() {
   const [isInsightsPage, setIsInsightsPage] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [uploadProgress, setUploadProgress] = useState<number | null>(null);
+  const [uploadMessage, setUploadMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   async function loadEmployees() {
     const res = await getEmployees();
@@ -60,9 +66,41 @@ export function MainPage() {
 
   const handleCreateEmployee = async (data: CreateEmployeePayload) => {
     try {
-      await createEmployee(data);
+      const result = await createEmployee(data);
+      const newEmployeeId = result.data.id;
+
+      if (data.profileImage) {
+        setUploadProgress(0);
+        setUploadMessage(null);
+
+        try {
+          await uploadProfileImage(newEmployeeId, data.profileImage, (event) => {
+            if (event.total) {
+              setUploadProgress(
+                Math.round((event.loaded * 100) / event.total),
+              );
+            }
+          });
+
+          setUploadProgress(null);
+          setUploadMessage({
+            type: "success",
+            text: "Profile image uploaded successfully",
+          });
+        } catch {
+          setUploadProgress(null);
+          setUploadMessage({
+            type: "error",
+            text: "Failed to upload profile image",
+          });
+        }
+      }
+
       await loadEmployees();
-      alert("Employee created successfully");
+
+      if (!data.profileImage) {
+        alert("Employee created successfully");
+      }
     } catch {
       alert("Failed to create employee");
     }
@@ -131,6 +169,30 @@ export function MainPage() {
           </button>
         </div>
       </div>
+
+      {uploadProgress !== null && (
+        <div className="upload-progress">
+          <div className="upload-progress-bar">
+            <div
+              className="upload-progress-fill"
+              style={{ width: `${uploadProgress}%` }}
+            />
+          </div>
+          <span className="upload-progress-text">
+            Uploading profile image... {uploadProgress}%
+          </span>
+        </div>
+      )}
+
+      {uploadMessage && (
+        <div
+          className={`upload-message ${uploadMessage.type === "success" ? "upload-success" : "upload-error"}`}
+          onClick={() => setUploadMessage(null)}
+        >
+          {uploadMessage.text}
+          <span className="upload-message-close">✕</span>
+        </div>
+      )}
 
       {isEmployeeListPage && (
         <EmployeeList

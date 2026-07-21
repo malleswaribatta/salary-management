@@ -9,6 +9,7 @@ import {
   fetchEmployeeTypeCount,
   fetchEmployeeTypes,
   updateEmployee,
+  uploadProfileImage,
 } from "./employee.controller.ts";
 
 export const employeeRoutes = new Hono();
@@ -17,6 +18,7 @@ employeeRoutes.post("/employee", createEmployee);
 employeeRoutes.get("/employee", fetchEmployee);
 employeeRoutes.put("/employee/:id", updateEmployee);
 employeeRoutes.delete("/employee/:id", deleteEmployee);
+employeeRoutes.post("/employee/:id/profile-image", uploadProfileImage);
 employeeRoutes.get("/countries", fetchCountries);
 employeeRoutes.get("/employeeTypes", fetchEmployeeTypes);
 employeeRoutes.get(

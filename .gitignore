@@ -17,6 +17,3 @@ coverage/
 
 # Archives
 *.zip
-
-# Uploaded files
-backend/src/storage/

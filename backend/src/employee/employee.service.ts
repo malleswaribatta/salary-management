@@ -9,6 +9,7 @@ import {
   validateEmail,
   validateEmployeeType,
 } from "./employee.validate.ts";
+import { s3Service } from "../storage/s3.service.ts";
 
 export const createEmployeeService = async (data: CreateEmployeeDTO) => {
   await validateEmail(data.email);
@@ -98,6 +99,11 @@ export const updateEmployeeService = async (
 };
 
 export const deleteEmployeeService = async (id: number) => {
+  const employee = await prisma.employee.findUnique({ where: { id } });
+  if (employee?.profileImageKey) {
+    await s3Service.deleteFile(employee.profileImageKey);
+  }
+
   return await prisma.employee.delete({
     where: { id },
   });
@@ -217,15 +223,11 @@ export const uploadProfileImageService = async (
     throw new Error("File size must be less than 5 MB");
   }
 
-  const ext = file.name.split(".").pop() || "jpg";
-  const profileImageKey = `${crypto.randomUUID()}.${ext}`;
+  const profileImageKey = await s3Service.uploadFile(file);
 
-  const uploadsDir = `${Deno.cwd()}/uploads/profile-images`;
-  await Deno.mkdir(uploadsDir, { recursive: true });
-
-  const filePath = `${uploadsDir}/${profileImageKey}`;
-  const buffer = await file.arrayBuffer();
-  await Deno.writeFile(filePath, new Uint8Array(buffer));
+  if (employee.profileImageKey) {
+    await s3Service.deleteFile(employee.profileImageKey);
+  }
 
   await prisma.employee.update({
     where: { id },
@@ -233,4 +235,14 @@ export const uploadProfileImageService = async (
   });
 
   return { profileImageKey };
+};
+
+export const getProfileImageService = async (
+  key: string,
+): Promise<{ body: ReadableStream; contentType: string }> => {
+  return await s3Service.getFile(key);
+};
+
+export const deleteProfileImageService = async (key: string): Promise<void> => {
+  await s3Service.deleteFile(key);
 };

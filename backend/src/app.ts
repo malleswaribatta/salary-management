@@ -1,7 +1,7 @@
 import { Hono } from "@hono/hono";
-import { serveStatic } from "@hono/hono/deno";
 import { employeeRoutes } from "./employee/employee.routes.ts";
 import { cors } from "@hono/hono/cors";
+import { getProfileImageService } from "./employee/employee.service.ts";
 export const app = new Hono();
 app.use(
   "*",
@@ -18,6 +18,20 @@ app.get("/", (c) => {
   return c.json({ message: "Server is running" });
 });
 
-app.get("/uploads/profile-images/*", serveStatic({ root: "./" }));
+app.get("/uploads/profile-images/:key", async (c) => {
+  try {
+    const key = c.req.param("key");
+    const { body, contentType } = await getProfileImageService(key);
+
+    return new Response(body, {
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "public, max-age=86400",
+      },
+    });
+  } catch {
+    return c.json({ error: "Image not found" }, 404);
+  }
+});
 
 app.route("api/", employeeRoutes);

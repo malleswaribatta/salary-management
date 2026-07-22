@@ -1,8 +1,8 @@
 import {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
   DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
 } from "@aws-sdk/client-s3";
 
 const BUCKET_NAME = Deno.env.get("S3_BUCKET_NAME");
